@@ -58,6 +58,9 @@ plugins:
   - name: openlineage
     plugin-class: airflow.providers.openlineage.plugins.openlineage.OpenLineageProviderPlugin
 
+hook-lineage-readers:
+  - airflow.providers.openlineage.utils.hook_lineage_reader.OpenLineageHookLineageReader
+
 config:
   openlineage:
     description: |

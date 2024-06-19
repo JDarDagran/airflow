@@ -19,6 +19,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from airflow.datasets import Dataset
+
 if TYPE_CHECKING:
     from urllib.parse import SplitResult
 
@@ -32,3 +34,6 @@ def sanitize_uri(uri: SplitResult) -> SplitResult:
     if len(uri.path.split("/")) != 4:  # Leading slash, catalog, schema, and table names.
         raise ValueError("URI format trino:// must contain catalog, schema, and table names")
     return uri
+
+def create_dataset(*, host: str, table: str, port: int = 8080, catalog: str = "hive", schema: str = "default") -> Dataset:
+    return Dataset(uri=f"trino://{host}:{port}/{catalog}/{schema}/{table}")

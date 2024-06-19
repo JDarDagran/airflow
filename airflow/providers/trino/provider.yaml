@@ -87,6 +87,7 @@ operators:
 dataset-uris:
   - schemes: [trino]
     handler: airflow.providers.trino.datasets.trino.sanitize_uri
+    factory: airflow.providers.trino.datasets.trino.create_dataset
 
 hooks:
   - integration-name: Trino
